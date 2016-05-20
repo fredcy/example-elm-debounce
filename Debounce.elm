@@ -46,7 +46,6 @@ update action model =
             in
                 ( { model | input = val, sleepCount = newCount }
                 , Process.sleep timeToSettle |> Task.perform never (always (Timeout newCount))
-                  --, Task.sleep timeToSettle |> Effects.task |> Effects.map (always (Timeout newCount))
                 )
 
         Timeout count ->
@@ -61,7 +60,6 @@ view : Model -> Html Action
 view model =
     Html.div []
         [ Html.h3 [] [ Html.text "Input here" ]
-          --, Html.input [ Html.Events.on "input" Html.Events.targetValue (Signal.message address << Update) ] []
         , Html.input [ Html.onInput Update ] []
         , Html.h3 [] [ Html.text "Debounced value" ]
         , Html.div [] [ Html.text model.debounced ]
