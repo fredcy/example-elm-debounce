@@ -1,9 +1,7 @@
 module Main exposing (..)
 
-import Basics.Extra exposing (never)
 import Html exposing (Html)
 import Html.Events as Html
-import Html.App as Html
 import Task
 import Time
 import Process
@@ -45,7 +43,7 @@ update action model =
                     model.sleepCount + 1
             in
                 ( { model | input = val, sleepCount = newCount }
-                , Process.sleep timeToSettle |> Task.perform never (always (Timeout newCount))
+                , Process.sleep timeToSettle |> Task.perform (always (Timeout newCount))
                 )
 
         Timeout count ->
