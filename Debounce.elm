@@ -24,6 +24,9 @@ type Action
     | Timeout Int
 
 
+{-|
+    250 is the time to wait. Change it to tests.
+-}
 timeToSettle =
     250 * Time.millisecond
 
